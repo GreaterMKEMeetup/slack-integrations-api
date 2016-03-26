@@ -1,13 +1,16 @@
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
+apply plugin: 'maven'
 
-group = 'org.gmjm'
-version = '1.0-SNAPSHOT'
+group = gradle.projectGroupId
+version = gradle.projectVersion
+
 sourceCompatibility = '1.8'
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
@@ -15,3 +18,5 @@ dependencies {
 
     testCompile 'org.testng:testng:6.9.10'
 }
+
+build.dependsOn install
