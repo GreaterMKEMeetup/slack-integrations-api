@@ -1,5 +1,9 @@
 package org.gmjm.slack.api.message;
 
+/**
+ * AttachementBuilder is used to build up a complex, formatted attachment
+ * for inclusion in a SlackMessageBuilder.
+ */
 public interface AttachmentBuilder
 {
 	AttachmentBuilder setTitle(String title, String link);
