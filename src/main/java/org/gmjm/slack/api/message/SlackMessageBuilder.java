@@ -15,7 +15,7 @@ public interface SlackMessageBuilder
 
 	SlackMessageBuilder setText(String text, boolean markdownEnabled);
 
-	SlackMessageBuilder setChannel(ChannelName channelName);
+	SlackMessageBuilder setChannel(String channelName);
 
 	SlackMessageBuilder setUserAsChannel(String userName);
 
