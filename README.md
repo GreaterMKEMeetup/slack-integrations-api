@@ -19,6 +19,8 @@ Use this interface to obtain instances of SlackMessageBuilder, and AttachmentBui
 ### org.gmjm.slack.api.message.SlackMessageBuilder
 Use this interface to build up a Slack message, the call .build() to obtain a message string.  Depending on the implementation of SlackMessageFactory you use will determine if the returned message string is plain text, or JSON.
 
+[Slack screenshot of basic SlackMessageBuilder example.](http://imgur.com/jM2Qa39)
+
 ```java
   // SlackMessageFactory implementations provided by slack-integrations-core.
   SlackMessageBuilder messageBuilder = slackMessageFactory.createMessageBuilder(); 
