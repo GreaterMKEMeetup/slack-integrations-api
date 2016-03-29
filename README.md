@@ -43,13 +43,13 @@ Use this interface to build up attachments that you can add to a SlackMessageBui
   messageBuilder.setChannel("doughnut-lovers");
   
   {
-    AttachmentBuilder  = slackMessageFactory.createAttachmentBuilder();
+    AttachmentBuilder attachmentBuilder = slackMessageFactory.createAttachmentBuilder();
     attachmentBuilder.setTitle("Sprinkles");
     attachmentBuilder.setText("Red, white, and blue, *MURICA*!");
     messageBuilder.addAttachment(attachmentBuilder);
   }
   {
-    AttachmentBuilder  = slackMessageFactory.createAttachmentBuilder();
+    AttachmentBuilder attachmentBuilder = slackMessageFactory.createAttachmentBuilder();
     attachmentBuilder.setTitle("Jelly","https://en.wikipedia.org/wiki/Jelly_doughnut");
     attachmentBuilder.setText("Delicious cherry filling.");
     messageBuilder.addAttachment(attachmentBuilder);
