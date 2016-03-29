@@ -34,7 +34,7 @@ Use this interface to build up a Slack message, the call .build() to obtain a me
 ### org.gmjm.slack.api.message.AttachmentBuilder
 Use this interface to build up attachments that you can add to a SlackMessageBuilder.  Not all Slack response types support attachments, but most do.
 
-![AttachmentExample](http://imgur.com/61S01vb)
+[Slack screenshot of AttachmentBuilder example.](http://imgur.com/61S01vb)
 
 ```java
   SlackMessageBuilder messageBuilder = slackMessageFactory.createMessageBuilder(); 
