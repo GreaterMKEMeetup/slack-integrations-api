@@ -1,4 +1,4 @@
-![Build Badge](https://travis-ci.org/GreaterMKEMeetup/slack-integrations-api.svg?branch=master)
+[![Build Status](https://travis-ci.org/GreaterMKEMeetup/slack-integrations-api.svg?branch=master)](https://travis-ci.org/GreaterMKEMeetup/slack-integrations-api)
 
 # slack-integrations-api
 
