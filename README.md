@@ -15,7 +15,7 @@ For an example of how to use the API in a SpringBoot app to create custom integr
 - [message](#orggmjmslackapimessage)
 - [hook](#orggmjmslackapihook)
 
-### [org.gmjm.slack.api.model](/src/main/java/org/gmjm/slack/api/message)
+### [org.gmjm.slack.api.model](/src/main/java/org/gmjm/slack/api/model)
 
 #### SlackMessage
 use SlackCommand to obtain information from an incoming Slack Command.
