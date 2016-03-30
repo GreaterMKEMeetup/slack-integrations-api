@@ -6,8 +6,8 @@ The minimal API allows you to:
 * Build Slack messages with attachemtns.
 * Easily send a response to a Slack command, or Incoming Webhook.
 
-This API is currently implemented by https://github.com/GreaterMKEMeetup/slack-integrations-core
-For an example of how to use the API in a SpringBoot app to create custom integrations, see https://github.com/GreaterMKEMeetup/springboot-slack-integrations
+This API is currently implemented by [slack-integrations-core](https://github.com/GreaterMKEMeetup/slack-integrations-core).
+For an example of how to use the API in a SpringBoot app to create custom integrations, see [springboot-slack-integrations](https://github.com/GreaterMKEMeetup/springboot-slack-integrations).
 
 ## Overview
 ### org.gmjm.slack.api.model.SlackMessage
@@ -63,5 +63,31 @@ Use this interface to build up attachments that you can add to a SlackMessageBui
 ```
 
 ### org.gmjm.slack.api.hook.HookRequesetFactory
+Use this class to create instances of HookRequest objects.  Implementations found in [slack-integrations-core](https://github.com/GreaterMKEMeetup/slack-integrations-core) project.
+
 ### org.gmjm.slack.api.hook.HookRequest
+A reusable object that can be used to send a message to an Incoming Webhook, or a reply URL supplied by a SlackMessage object.
+
+```java
+  //Used as a reply
+  HookRequest replyRequest = hookRequestFactory.create(slackCommand.getResponseUrl());
+  
+  SlackMessageBuilder smb = slackMessageFactory.createMessageBuilder();
+  smb.setText("Your wish is my command.");
+  
+  replyRequest.send(smb.build());
+```
+
+
 ### org.gmjm.slack.api.hook.HookResponse
+An object that makes processing the response from a HookRequest easier.  You don't have to worry about wrapping requests in try/catch blocks as this information is captured and provided by the HookResponse object.  This makes collections of HookRequests much nicer to process in Java 8 streams, as one thrown exception won't prevent the whole stream from exiting.
+
+```java
+  import org.gmjm.slack.api.hook.HookResponse.Status;
+
+  HookResponse hookResponse = hookRequest.send(messageText);
+  
+  if(Status.FAILED.equals(hookResponse.getStatus())) {
+    logger.error("Failed to send response: " + hookResponse.getMessage());
+  }
+```
