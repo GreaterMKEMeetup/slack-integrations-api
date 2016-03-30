@@ -9,14 +9,24 @@ The minimal API allows you to:
 This API is currently implemented by [slack-integrations-core](https://github.com/GreaterMKEMeetup/slack-integrations-core).
 For an example of how to use the API in a SpringBoot app to create custom integrations, see [springboot-slack-integrations](https://github.com/GreaterMKEMeetup/springboot-slack-integrations).
 
-## Overview
-### org.gmjm.slack.api.model.SlackMessage
+## Packages
+
+* [model](org.gmjm.slack.api.model)
+* [message](org.gmjm.slack.api.message)
+* [hook](org.gmjm.slack.api.hook)
+
+### [org.gmjm.slack.api.model](/src/main/java/org/gmjm/slack/api/model)
+
+#### SlackMessage
 use SlackCommand to obtain information from an incoming Slack Command.
 
-### org.gmjm.slack.api.message.SlackMessageFactory
+
+### [org.gmjm.slack.api.message](/src/main/java/org/gmjm/slack/api/message)
+
+#### SlackMessageFactory
 Use this interface to obtain instances of SlackMessageBuilder, and AttachmentBuilder.
 
-### org.gmjm.slack.api.message.SlackMessageBuilder
+#### SlackMessageBuilder
 Use this interface to build up a Slack message, the call .build() to obtain a message string.  Depending on the implementation of SlackMessageFactory you use will determine if the returned message string is plain text, or JSON.
 
 [Slack screenshot of basic SlackMessageBuilder example.](http://imgur.com/jM2Qa39)
@@ -33,7 +43,7 @@ Use this interface to build up a Slack message, the call .build() to obtain a me
   System.out.println(messageBuilder.build());
 ```
 
-### org.gmjm.slack.api.message.AttachmentBuilder
+#### org.gmjm.slack.api.message.AttachmentBuilder
 Use this interface to build up attachments that you can add to a SlackMessageBuilder.  Not all Slack response types support attachments, but most do.
 
 [Slack screenshot of AttachmentBuilder example.](http://imgur.com/61S01vb)
@@ -62,10 +72,12 @@ Use this interface to build up attachments that you can add to a SlackMessageBui
   System.out.println(messageBuilder.build());
 ```
 
-### org.gmjm.slack.api.hook.HookRequesetFactory
+### [org.gmjm.slack.api.hook](/src/main/java/org/gmjm/slack/api/hook)
+
+#### org.gmjm.slack.api.hook.HookRequesetFactory
 Use this class to create instances of HookRequest objects.  Implementations found in [slack-integrations-core](https://github.com/GreaterMKEMeetup/slack-integrations-core) project.
 
-### org.gmjm.slack.api.hook.HookRequest
+#### org.gmjm.slack.api.hook.HookRequest
 A reusable object that can be used to send a message to an Incoming Webhook, or a reply URL supplied by a SlackMessage object.
 
 ```java
@@ -78,8 +90,7 @@ A reusable object that can be used to send a message to an Incoming Webhook, or 
   replyRequest.send(smb.build());
 ```
 
-
-### org.gmjm.slack.api.hook.HookResponse
+#### org.gmjm.slack.api.hook.HookResponse
 An object that makes processing the response from a HookRequest easier.  You don't have to worry about wrapping requests in try/catch blocks as this information is captured and provided by the HookResponse object.  This makes collections of HookRequests much nicer to process in Java 8 streams, as one thrown exception won't prevent the whole stream from exiting.
 
 ```java
