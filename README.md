@@ -11,11 +11,11 @@ For an example of how to use the API in a SpringBoot app to create custom integr
 
 ## Packages
 
-- [model](#Model)
-- [message](#org.gmjm.slack.api.message)
-- [hook](#org.gmjm.slack.api.hook)
+- [model](#orggmjmslackapimodel)
+- [message](#orggmjmslackapimessage)
+- [hook](#orggmjmslackapihook)
 
-### Model
+### [org.gmjm.slack.api.model](/src/main/java/org/gmjm/slack/api/message)
 
 #### SlackMessage
 use SlackCommand to obtain information from an incoming Slack Command.
@@ -43,7 +43,7 @@ Use this interface to build up a Slack message, the call .build() to obtain a me
   System.out.println(messageBuilder.build());
 ```
 
-#### org.gmjm.slack.api.message.AttachmentBuilder
+#### AttachmentBuilder
 Use this interface to build up attachments that you can add to a SlackMessageBuilder.  Not all Slack response types support attachments, but most do.
 
 [Slack screenshot of AttachmentBuilder example.](http://imgur.com/61S01vb)
@@ -74,10 +74,10 @@ Use this interface to build up attachments that you can add to a SlackMessageBui
 
 ### [org.gmjm.slack.api.hook](/src/main/java/org/gmjm/slack/api/hook)
 
-#### org.gmjm.slack.api.hook.HookRequesetFactory
+#### HookRequesetFactory
 Use this class to create instances of HookRequest objects.  Implementations found in [slack-integrations-core](https://github.com/GreaterMKEMeetup/slack-integrations-core) project.
 
-#### org.gmjm.slack.api.hook.HookRequest
+#### HookRequest
 A reusable object that can be used to send a message to an Incoming Webhook, or a reply URL supplied by a SlackMessage object.
 
 ```java
@@ -90,7 +90,7 @@ A reusable object that can be used to send a message to an Incoming Webhook, or 
   replyRequest.send(smb.build());
 ```
 
-#### org.gmjm.slack.api.hook.HookResponse
+#### HookResponse
 An object that makes processing the response from a HookRequest easier.  You don't have to worry about wrapping requests in try/catch blocks as this information is captured and provided by the HookResponse object.  This makes collections of HookRequests much nicer to process in Java 8 streams, as one thrown exception won't prevent the whole stream from exiting.
 
 ```java
