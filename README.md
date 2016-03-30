@@ -87,7 +87,7 @@ A reusable object that can be used to send a message to an Incoming Webhook, or 
   SlackMessageBuilder smb = slackMessageFactory.createMessageBuilder();
   smb.setText("Your wish is my command.");
   
-  replyRequest.send(smb.build());
+  replyRequest.send(smb.build()); 
 ```
 
 #### HookResponse
