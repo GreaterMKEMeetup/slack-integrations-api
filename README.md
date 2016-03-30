@@ -1,3 +1,5 @@
+![Build Badge](https://travis-ci.org/GreaterMKEMeetup/slack-integrations-api.svg?branch=master)
+
 # slack-integrations-api
 
 This Java based API is designed to make adding new slack integrations into your Java applications simple.  
