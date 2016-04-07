@@ -5,9 +5,24 @@ package org.gmjm.slack.api.message;
  * message building objects.  This ensures the .build methods will work as
  * intended.
  *
+ * Implementations of this factory are intended to be thread safe.
+ *
  */
 public interface SlackMessageFactory
 {
+	/**
+	 *
+	 * This object is not threadsafe, or reusable.
+	 *
+	 * @return A new instance of SlackMessageBuilder.
+	 */
 	SlackMessageBuilder createMessageBuilder();
+
+	/**
+	 *
+	 * This object is not threadsafe, or reusable.
+	 *
+	 * @return A new instance of AttachmentBuilder.
+	 */
 	AttachmentBuilder createAttachmentBuilder();
 }

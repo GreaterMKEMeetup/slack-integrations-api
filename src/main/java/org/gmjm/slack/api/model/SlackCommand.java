@@ -26,14 +26,13 @@ public interface SlackCommand
 	 * The token configured in the slack command's settings.
 	 * Can be used to verify if command came from a valid source.
 	 *
-	 * @return
+	 * @return the token configured for this command.
 	 */
 	String getToken();
 
 	/**
-	 * The userId of the user who initiated the command.
 	 *
-	 * @return
+	 * @return the userId of the user who initiated the command.
 	 */
 	String getUserId();
 
@@ -42,7 +41,7 @@ public interface SlackCommand
 	 * example:  username = stan, userId = 1234, return = <@1234|stan>
 	 *
 	 *
-	 * @return
+	 * @return a message friendly format of userId and userName.
 	 */
 	String getMsgFriendlyUser();
 
@@ -55,7 +54,7 @@ public interface SlackCommand
 	 * within 3000 ms, you can respond with the message as the body.  Else, use
 	 * the URL returned from this method.
 	 *
-	 * @return
+	 * @return a URL
 	 */
 	String getResponseUrl();
 
@@ -64,4 +63,33 @@ public interface SlackCommand
 	 * @return a map containing all incoming parameters.
 	 */
 	Map<String,String> getAll();
+
+	/**
+	 *
+	 * @return the teamId of the user who issued the command.
+	 */
+	String getTeamId();
+
+	/**
+	 *
+	 * <b>myteam</b>.slack.com
+	 *
+	 * @return the team domain of the user who issued the command.
+	 *
+	 */
+	String getTeamDomain();
+
+	/**
+	 *
+	 * @return the channel id the command was issued from.
+	 */
+	String getChannelId();
+
+
+	/**
+	 *
+	 * @return the channel name the command was issued from.
+	 */
+	String getChannelName();
+
 }
