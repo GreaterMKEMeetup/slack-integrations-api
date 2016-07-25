@@ -37,6 +37,8 @@ signing {
     sign configurations.archives
 }
 
+signing.onlyIf { !project.hasProperty('travisBuild') }
+
 uploadArchives {
     repositories {
         mavenDeployer {
