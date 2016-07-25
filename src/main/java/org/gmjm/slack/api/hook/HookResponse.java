@@ -17,7 +17,7 @@ public interface HookResponse
 
 	/**
 	 *
-	 * @return
+	 * @return The HTTP status code of the response.
 	 */
 	int getStatusCode();
 

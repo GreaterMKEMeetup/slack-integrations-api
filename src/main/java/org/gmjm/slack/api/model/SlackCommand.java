@@ -38,7 +38,7 @@ public interface SlackCommand
 
 	/**
 	 * Returns a string formatted to display a linked username in a slack message.
-	 * example:  username = stan, userId = 1234, return = <@1234|stan>
+	 * example:  username = stan, userId = 1234, return = &#60;@1234|stan&#62;
 	 *
 	 *
 	 * @return a message friendly format of userId and userName.

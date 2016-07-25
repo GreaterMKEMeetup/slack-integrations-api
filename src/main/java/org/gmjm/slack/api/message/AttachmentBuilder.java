@@ -11,11 +11,10 @@ public interface AttachmentBuilder
 {
 	/**
 	 *
-	 * Sets the title of the Attachment.
-	 * Set's the link of the Attachment.
+	 * Sets the title, and enables it to link to a URL.
 	 *
-	 * @param title
-	 * @param link
+	 * @param title The title of the Attachment.
+	 * @param link The link of the attachment (URL)
 	 * @return this
 	 */
 	AttachmentBuilder setTitle(String title, String link);
@@ -24,7 +23,7 @@ public interface AttachmentBuilder
 	 *
 	 * Set the title of the Attachment.
 	 *
-	 * @param title
+	 * @param title The Title of the Attachment
 	 * @return this
 	 */
 	AttachmentBuilder setTitle(String title);
@@ -35,7 +34,7 @@ public interface AttachmentBuilder
 	 *
 	 * Markdown enabled by default.
 	 *
-	 * @param text
+	 * @param text The attachment body.
 	 * @return this
 	 */
 	AttachmentBuilder setText(String text);
@@ -45,8 +44,8 @@ public interface AttachmentBuilder
 	 * Set the text of the attachment body.
 	 * Specify if markdown is enabled
 	 *
-	 * @param text
-	 * @param markdownEnabled
+	 * @param text  The attachment body.
+	 * @param markdownEnabled Should the attachment body be parsed as markdown?
 	 * @return this
 	 */
 	AttachmentBuilder setText(String text, boolean markdownEnabled);
@@ -57,7 +56,7 @@ public interface AttachmentBuilder
 	 * title.
 	 * Markdown enabled by default.
 	 *
-	 * @param preText
+	 * @param preText The pre text of the attachment.
 	 * @return this
 	 */
 	AttachmentBuilder setPreText(String preText);
@@ -67,8 +66,8 @@ public interface AttachmentBuilder
 	 * Set the pre text of the attachment.  This will appear below the title.
 	 * Specify if markdown is enable.d
 	 *
-	 * @param preText
-	 * @param markdownEnabled
+	 * @param preText The pre text of the attachment.
+	 * @param markdownEnabled  Should the pre text be parsed as markdown?
 	 * @return this
 	 */
 	AttachmentBuilder setPreText(String preText, boolean markdownEnabled);

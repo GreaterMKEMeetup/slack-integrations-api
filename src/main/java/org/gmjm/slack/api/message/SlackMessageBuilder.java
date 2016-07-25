@@ -12,24 +12,24 @@ public interface SlackMessageBuilder
 	/**
 	 * Set the text of the message.  Markdown enabled by default.
 	 *
-	 * @param text
-	 * @return
+	 * @param text  The text of the message.
+	 * @return this
 	 */
 	SlackMessageBuilder setText(String text);
 
 	/**
 	 * Specify an emoji as an icon.
 	 *
-	 * @param iconEmoji
-	 * @return
+	 * @param iconEmoji The name of the emoji to set as the user icon.
+	 * @return this
 	 */
 	SlackMessageBuilder setIconEmoji(String iconEmoji);
 
 	/**
 	 * Specify a URL to use as an icon. Any publicly reachable resource will work.
 	 *
-	 * @param iconUrl
-	 * @return
+	 * @param iconUrl A URL to an image resource to set as the user icon.
+	 * @return this
 	 */
 	SlackMessageBuilder setIconUrl(String iconUrl);
 
@@ -37,9 +37,9 @@ public interface SlackMessageBuilder
 	 * Set the text of the message.
 	 * Specify if markdown is enabled.
 	 *
-	 * @param text
-	 * @param markdownEnabled
-	 * @return
+	 * @param text - The text of the message.
+	 * @param markdownEnabled - Should message text be parsed as markdown.
+	 * @return this
 	 */
 	SlackMessageBuilder setText(String text, boolean markdownEnabled);
 
@@ -48,8 +48,8 @@ public interface SlackMessageBuilder
 	 *
 	 * (Will override setChannel and setUserAsChannel)
 	 *
-	 * @param channelId
-	 * @return
+	 * @param channelId  The ID of the channel.
+	 * @return this
 	 */
 	SlackMessageBuilder setChannelId(String channelId);
 
@@ -59,8 +59,8 @@ public interface SlackMessageBuilder
 	 *
 	 * (Will override setChannelId and setUserAsChannel)
 	 *
-	 * @param channelName
-	 * @return
+	 * @param channelName The name of the channel.
+	 * @return this
 	 */
 	SlackMessageBuilder setChannel(String channelName);
 
@@ -69,16 +69,16 @@ public interface SlackMessageBuilder
 	 *
 	 * (Will override setChannel and setChannelId)
 	 *
-	 * @param userName
-	 * @return
+	 * @param userName The recipient username.
+	 * @return this
 	 */
 	SlackMessageBuilder setUserAsChannel(String userName);
 
 	/**
 	 * Add an attachment to this message.
 	 *
-	 * @param attachmentBuilder
-	 * @return
+	 * @param attachmentBuilder The attachment builder to include.
+	 * @return this
 	 */
 	SlackMessageBuilder addAttachment(AttachmentBuilder attachmentBuilder);
 
@@ -90,16 +90,16 @@ public interface SlackMessageBuilder
 	 *
 	 * in_channel - This will respond to the entire channel the command was issued in.
 	 *
-	 * @param responseType
-	 * @return
+	 * @param responseType  The response type.
+	 * @return this
 	 */
 	SlackMessageBuilder setResponseType(String responseType);
 
 	/**
 	 * Set the username that should appear on the message.
 	 *
-	 * @param username
-	 * @return
+	 * @param username The username that should appear on the message.
+	 * @return this
 	 */
 	SlackMessageBuilder setUsername(String username);
 
@@ -107,7 +107,7 @@ public interface SlackMessageBuilder
 	/**
 	 * Build up the current message into a String.
 	 *
-	 * @return
+	 * @return The current message as a String formatted for Slack.
 	 */
 	String build();
 }
