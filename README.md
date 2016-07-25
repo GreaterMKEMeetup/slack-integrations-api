@@ -65,23 +65,22 @@ Use this interface to build up attachments that you can add to a SlackMessageBui
 [Slack screenshot of AttachmentBuilder example.](http://imgur.com/61S01vb)
 
 ```java
-  SlackMessageBuilder messageBuilder = slackMessageFactory.createMessageBuilder(); 
-  
-  messageBuilder.setUsername("doughnut-overlord");
-  messageBuilder.setIconEmoji("doughnut");
-  messageBuilder.setText("Here are your _amazing_ doughtnut options!"); //Markdown is enabled by default
-  messageBuilder.setChannel("doughnut-lovers");
+  SlackMessageBuilder messageBuilder = slackMessageFactory.createMessageBuilder()
+    .setUsername("doughnut-overlord")
+    .setIconEmoji("doughnut")
+    .setText("Here are your _amazing_ doughtnut options!") //Markdown is enabled by default
+    .setChannel("doughnut-lovers");
   
   {
-    AttachmentBuilder attachmentBuilder = slackMessageFactory.createAttachmentBuilder();
-    attachmentBuilder.setTitle("Sprinkles");
-    attachmentBuilder.setText("Red, white, and blue, *MURICA*!");
+    AttachmentBuilder attachmentBuilder = slackMessageFactory.createAttachmentBuilder()
+        .setTitle("Sprinkles")
+        .setText("Red, white, and blue, *MURICA*!");
     messageBuilder.addAttachment(attachmentBuilder);
   }
   {
-    AttachmentBuilder attachmentBuilder = slackMessageFactory.createAttachmentBuilder();
-    attachmentBuilder.setTitle("Jelly","https://en.wikipedia.org/wiki/Jelly_doughnut");
-    attachmentBuilder.setText("Delicious cherry filling.");
+    AttachmentBuilder attachmentBuilder = slackMessageFactory.createAttachmentBuilder()
+        .setTitle("Jelly","https://en.wikipedia.org/wiki/Jelly_doughnut")
+        .setText("Delicious cherry filling.");
     messageBuilder.addAttachment(attachmentBuilder);
   }
   
@@ -100,8 +99,8 @@ A reusable object that can be used to send a message to an Incoming Webhook, or 
   //Used as a reply
   HookRequest replyRequest = hookRequestFactory.create(slackCommand.getResponseUrl());
   
-  SlackMessageBuilder smb = slackMessageFactory.createMessageBuilder();
-  smb.setText("Your wish is my command.");
+  SlackMessageBuilder smb = slackMessageFactory.createMessageBuilder()
+    .setText("Your wish is my command.");
   
   replyRequest.send(smb.build()); 
 ```
