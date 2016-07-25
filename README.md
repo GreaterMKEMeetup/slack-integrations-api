@@ -11,6 +11,20 @@ The minimal API allows you to:
 This API is currently implemented by [slack-integrations-core](https://github.com/GreaterMKEMeetup/slack-integrations-core).
 For an example of how to use the API in a SpringBoot app to create custom integrations, see [springboot-slack-integrations](https://github.com/GreaterMKEMeetup/springboot-slack-integrations).
 
+## Usage
+### Maven
+```xml
+<dependency>
+    <groupId>com.github.greatermkemeetup</groupId>
+    <artifactId>slack-integrations-api</artifactId>
+    <version>1.0.2</version>
+</dependency>
+```
+### Gradle
+```groovy
+compile 'com.github.greatermkemeetup:slack-integrations-api:1.0.2'
+```
+
 ## Packages
 
 - [model](#orggmjmslackapimodel)
