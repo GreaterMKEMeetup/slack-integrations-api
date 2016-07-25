@@ -49,12 +49,11 @@ Use this interface to build up a Slack message, the call .build() to obtain a me
 
 ```java
   // SlackMessageFactory implementations provided by slack-integrations-core.
-  SlackMessageBuilder messageBuilder = slackMessageFactory.createMessageBuilder(); 
-  
-  messageBuilder.setUsername("doughnut-overlord");
-  messageBuilder.setIconEmoji("doughnut");
-  messageBuilder.setText("Eat me, I'm a *delicious* doughnut!"); //Markdown is enabled by default
-  messageBuilder.setChannel("doughnut-lovers");
+  SlackMessageBuilder messageBuilder = slackMessageFactory.createMessageBuilder()
+    .setUsername("doughnut-overlord")
+    .setIconEmoji("doughnut")
+    .setText("Eat me, I'm a *delicious* doughnut!") //Markdown is enabled by default
+    .setChannel("doughnut-lovers");
   
   System.out.println(messageBuilder.build());
 ```
