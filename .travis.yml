@@ -1,7 +1,7 @@
 language: java
 
 jdk:
-  - oraclejdk8
+- oraclejdk8
 
 script: 
-  - ./gradlew assemble -x signArchives
+- ./gradlew assemble -x signArchives
