@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 group = gradle.projectGroupId
 version = gradle.projectVersion
 
@@ -14,11 +15,27 @@ apply plugin: 'idea'
 apply plugin: 'maven'
 apply plugin: 'signing'
 
+=======
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+
+group = gradle.projectGroupId
+version = gradle.projectVersion
+
+
+sourceCompatibility = '1.8'
+
+>>>>>>> 58186e77852d7c81af2deb66b029ab0fda391f9d
 repositories {
     mavenCentral()
     mavenLocal()
 }
 
+<<<<<<< HEAD
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
@@ -26,6 +43,9 @@ dependencies {
     compile group: 'org.slf4j', name: 'slf4j-api', version:'1.7.21'
     compile group: 'org.springframework', name: 'spring-context', version:'4.3.3.RELEASE'
     compile group: 'org.aspectj', name: 'aspectjweaver', version:'1.8.9'
+=======
+dependencies {
+>>>>>>> 58186e77852d7c81af2deb66b029ab0fda391f9d
 }
 
 task javadocJar(type: Jar) {
@@ -63,6 +83,7 @@ uploadArchives {
             }
 
             pom.project {
+<<<<<<< HEAD
                 name 'com.github.greatermkemeetup:jscientist'
                 packaging 'jar'
                 // optionally artifactId can be defined here
@@ -73,6 +94,18 @@ uploadArchives {
                     connection 'scm:git:git://github.com/GreaterMKEMeetup/jscientist.git'
                     developerConnection 'scm:git:ssh://github.com:GreaterMKEMeetup/jscientist.git'
                     url 'https://github.com/GreaterMKEMeetup/jscientist'
+=======
+                name 'com.github.greatermkemeetup:slack-integrations-api'
+                packaging 'jar'
+                // optionally artifactId can be defined here
+                description 'An API for writing Slack integrations with Java.'
+                url 'https://github.com/GreaterMKEMeetup/slack-integrations-api'
+
+                scm {
+                    connection 'scm:git:git://github.com/GreaterMKEMeetup/slack-integrations-api.git'
+                    developerConnection 'scm:git:ssh://github.com:GreaterMKEMeetup/slack-integrations-api.git'
+                    url 'https://github.com/GreaterMKEMeetup/slack-integrations-api'
+>>>>>>> 58186e77852d7c81af2deb66b029ab0fda391f9d
                 }
 
                 licenses {
@@ -95,4 +128,8 @@ uploadArchives {
 }
 
 
+<<<<<<< HEAD
 build.dependsOn install
+=======
+build.dependsOn install
+>>>>>>> 58186e77852d7c81af2deb66b029ab0fda391f9d

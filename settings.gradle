@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 rootProject.name = 'jscientist'
 gradle.ext.projectGroupId = 'com.github.greatermkemeetup'
 gradle.ext.projectVersion = '0.0.1-beta'
+=======
+rootProject.name = 'slack-integrations-api'
+gradle.ext.projectGroupId = 'com.github.greatermkemeetup'
+gradle.ext.projectVersion = '1.0.2'
+>>>>>>> 58186e77852d7c81af2deb66b029ab0fda391f9d
