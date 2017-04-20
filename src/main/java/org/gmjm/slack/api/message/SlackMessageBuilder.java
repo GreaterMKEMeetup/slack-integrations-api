@@ -1,18 +1,16 @@
 package org.gmjm.slack.api.message;
 
-
 /**
  * SlackMessageBuilder can be used to build up a complex, formatted slack message.
- *
+ * <p>
  * https://api.slack.com/docs/formatting
- *
  */
-public interface SlackMessageBuilder
-{
+public interface SlackMessageBuilder {
+
 	/**
 	 * Set the text of the message.  Markdown enabled by default.
 	 *
-	 * @param text  The text of the message.
+	 * @param text The text of the message.
 	 * @return this
 	 */
 	SlackMessageBuilder setText(String text);
@@ -37,7 +35,7 @@ public interface SlackMessageBuilder
 	 * Set the text of the message.
 	 * Specify if markdown is enabled.
 	 *
-	 * @param text - The text of the message.
+	 * @param text            - The text of the message.
 	 * @param markdownEnabled - Should message text be parsed as markdown.
 	 * @return this
 	 */
@@ -45,18 +43,17 @@ public interface SlackMessageBuilder
 
 	/**
 	 * Set the channelId the message should be sent to.
-	 *
+	 * <p>
 	 * (Will override setChannel and setUserAsChannel)
 	 *
-	 * @param channelId  The ID of the channel.
+	 * @param channelId The ID of the channel.
 	 * @return this
 	 */
 	SlackMessageBuilder setChannelId(String channelId);
 
-
 	/**
 	 * Set the channelName the message should be sent to.
-	 *
+	 * <p>
 	 * (Will override setChannelId and setUserAsChannel)
 	 *
 	 * @param channelName The name of the channel.
@@ -66,7 +63,7 @@ public interface SlackMessageBuilder
 
 	/**
 	 * Set the userName (PM) the message should be sent to.
-	 *
+	 * <p>
 	 * (Will override setChannel and setChannelId)
 	 *
 	 * @param userName The recipient username.
@@ -85,12 +82,12 @@ public interface SlackMessageBuilder
 	/**
 	 * Set the response type.  If responding directly to a request, or to
 	 * URL obtained from slackCommand.getResponseUrl(), you can specify the following:
-	 *
+	 * <p>
 	 * ephemeral -  This will respond so only the user who issued the command can see the message.
-	 *
+	 * <p>
 	 * in_channel - This will respond to the entire channel the command was issued in.
 	 *
-	 * @param responseType  The response type.
+	 * @param responseType The response type.
 	 * @return this
 	 */
 	SlackMessageBuilder setResponseType(String responseType);
@@ -102,7 +99,6 @@ public interface SlackMessageBuilder
 	 * @return this
 	 */
 	SlackMessageBuilder setUsername(String username);
-
 
 	/**
 	 * Build up the current message into a String.
