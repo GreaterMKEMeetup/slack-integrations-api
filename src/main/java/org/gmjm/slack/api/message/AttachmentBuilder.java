@@ -99,6 +99,21 @@ public interface AttachmentBuilder {
 	AttachmentBuilder setAuthorIcon(String url);
 
 	/**
+	 * Set the timestamp for this attachment.
+	 *
+	 * @param time The epoch time for the attachment.
+	 * @return this
+	 */
+	AttachmentBuilder setTimestamp(int time);
+
+	/**
+	 * Sets the timestamp this attachment to the current time.
+	 *
+	 * @return this
+	 */
+	AttachmentBuilder setCurrentTimestamp();
+
+	/**
 	 * Add a field to this attachment.
 	 *
 	 * @param builder A field to be included in the attachment.
