@@ -1,9 +1,9 @@
 package org.gmjm.slack.api.rtm;
 
-public interface EventConsumer {
+public interface EventConsumer<T> {
 
 	EventConsumerID getId();
 
-	void consume(Event event);
+	void consume(Event<T> event);
 
 }

@@ -1,6 +1,6 @@
 package org.gmjm.slack.api.rtm;
 
-public enum Events implements Event {
+public enum EventType {
 
 	ACCOUNTS_CHANGED("accounts_changed",true,false,"The list of accounts a user is signed into has changed"),
 	APP_UNINSTALLED("app_uninstalled",false,true,"Your Slack app was uninstalled."),
@@ -87,27 +87,21 @@ public enum Events implements Event {
 	TOKENS_REVOKED("tokens_revoked",false,true,"API tokens for your app were revoked."),
 	URL_VERIFICATION("url_verification",false,true,"Verifies ownership of an"),
 	USER_CHANGE("user_change",true,true,"A member's data has changed"),
-	USER_TYPING("user_typing",true,false,"A channel member is typing a message");
+	USER_TYPING("user_typing",true,false,"A channel member is typing a message"),
+	RECEIPT("receipt",true,false,"Receipt of a previously sent message upon reconnection"),
+	ERROR("error",true,true,"An error occurred, check payload for details"),
+	OTHER("other",true,true,"No other event type matched, check payload for details");
 
-	private final String eventType;
-	private final boolean rtm;
-	private final boolean eventsApi;
-	private final String description;
+	final String eventType;
+	final boolean rtm;
+	final boolean eventsApi;
+	final String description;
 
-	Events(String eventType, boolean rtm, boolean eventsApi, String description) {
+	EventType(String eventType, boolean rtm, boolean eventsApi, String description) {
 		this.eventType = eventType;
 		this.rtm = rtm;
 		this.eventsApi = eventsApi;
 		this.description = description;
 	}
 
-	@Override
-	public String getType() {
-		return eventType;
-	}
-
-	@Override
-	public String getDescription() {
-		return description;
-	}
 }

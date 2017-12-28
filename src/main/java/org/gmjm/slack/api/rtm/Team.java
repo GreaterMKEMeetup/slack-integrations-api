@@ -20,7 +20,7 @@ public interface Team {
 
 	/**
 	 * The EnterpriseId of the Team if it is part of an EnterpriseGrid
-	 * @return
+	 * @return The EnterpriseID of the team.
 	 */
 	String getEnterpriseId();
 
