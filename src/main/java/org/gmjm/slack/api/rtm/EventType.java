@@ -92,10 +92,10 @@ public enum EventType {
 	ERROR("error",true,true,"An error occurred, check payload for details"),
 	OTHER("other",true,true,"No other event type matched, check payload for details");
 
-	final String eventType;
-	final boolean rtm;
-	final boolean eventsApi;
-	final String description;
+	public final String eventType;
+	public final boolean rtm;
+	public final boolean eventsApi;
+	public final String description;
 
 	EventType(String eventType, boolean rtm, boolean eventsApi, String description) {
 		this.eventType = eventType;

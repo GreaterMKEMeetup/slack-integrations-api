@@ -1,6 +1,6 @@
 package org.gmjm.slack.api.rtm;
 
-public enum ConnectionErrors implements ConnectionError {
+public enum ConnectionErrorType {
 
 	NOT_AUTHED("not_authed","No authentication token provided."),
 	INVALID_AUTH("invalid_auth","Invalid authentication token."),
@@ -15,21 +15,12 @@ public enum ConnectionErrors implements ConnectionError {
 	TEAM_ADDED_TO_ORG("team_added_to_org","The workspace associated with your request is currently undergoing migration to an Enterprise Organization. Web API and other platform operations will be intermittently unavailable until the transition is complete."),
 	REQUEST_TIMEOUT("request_timeout","The method was called via a POST request, but the POST data was either missing or truncated.");
 
-	private final String code;
-	private final String description;
+	public final String code;
+	public final String description;
 
-	ConnectionErrors(String code, String description) {
+	ConnectionErrorType(String code, String description) {
 		this.code = code;
 		this.description = description;
 	}
 
-	@Override
-	public String getCode() {
-		return code;
-	}
-
-	@Override
-	public String getDescription() {
-		return description;
-	}
 }
