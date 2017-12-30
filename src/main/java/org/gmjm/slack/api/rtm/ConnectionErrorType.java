@@ -13,7 +13,8 @@ public enum ConnectionErrorType {
 	INVALID_POST_TYPE("invalid_post_type","The method was called via a POST request, but the specified Content-Type was invalid. Valid types are: application/x-www-form-urlencoded multipart/form-data text/plain."),
 	MISSING_POST_TYPE("missing_post_type","The method was called via a POST request and included a data payload, but the request did not include a Content-Type header."),
 	TEAM_ADDED_TO_ORG("team_added_to_org","The workspace associated with your request is currently undergoing migration to an Enterprise Organization. Web API and other platform operations will be intermittently unavailable until the transition is complete."),
-	REQUEST_TIMEOUT("request_timeout","The method was called via a POST request, but the POST data was either missing or truncated.");
+	REQUEST_TIMEOUT("request_timeout","The method was called via a POST request, but the POST data was either missing or truncated."),
+	EXCEPTION("exception","An exception was thrown during connection attempt.");
 
 	public final String code;
 	public final String description;

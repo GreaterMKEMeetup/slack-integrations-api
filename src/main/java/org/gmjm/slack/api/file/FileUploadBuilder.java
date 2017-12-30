@@ -25,6 +25,16 @@ public interface FileUploadBuilder {
 	FileUploadBuilder setContent(InputStream inputStream);
 
 	/**
+	 * Optional - Must be set if setFile is not called.
+	 *
+	 * File contents via a POST variable. If omitting this parameter, you must call setFile.
+	 *
+	 * @param content The content to upload.
+	 * @return this
+	 */
+	FileUploadBuilder setContent(String content);
+
+	/**
 	 * Optional - Must be set if setContent is not called.
 	 *
 	 * File contents via multipart/form-data. If omitting this parameter, you must submit content.
@@ -43,6 +53,16 @@ public interface FileUploadBuilder {
 	 * @return this
 	 */
 	FileUploadBuilder setFilename(String filename);
+
+	/**
+	 * Optional
+	 *
+	 * The file type identifier of the file.
+	 *
+	 * @param filetype The file type identifier of the file.
+	 * @return this
+	 */
+	FileUploadBuilder setFiletype(FileType filetype);
 
 	/**
 	 * Optional
