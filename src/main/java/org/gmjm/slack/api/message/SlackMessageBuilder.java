@@ -74,7 +74,6 @@ public interface SlackMessageBuilder {
 	/**
 	 * Add an attachment to this message.
 	 *
-	 * @deprecated
 	 * @param attachmentBuilder The attachment builder to include.
 	 * @return this
 	 */
