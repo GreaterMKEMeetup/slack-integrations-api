@@ -1,6 +1,7 @@
 package org.gmjm.slack.api.file;
 
 import java.io.InputStream;
+import java.util.function.Supplier;
 
 public interface FileUploadBuilder {
 
@@ -42,7 +43,7 @@ public interface FileUploadBuilder {
 	 * @param inputStream The file InputStream
 	 * @return this
 	 */
-	FileUploadBuilder setFile(InputStream inputStream);
+	FileUploadBuilder setInputStreamSupplier(Supplier<InputStream> inputStream);
 
 	/**
 	 * Optional
