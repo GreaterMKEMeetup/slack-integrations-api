@@ -66,7 +66,7 @@ Use this interface to build up attachments that you can add to a SlackMessageBui
 [Slack screenshot of AttachmentBuilder example.](http://imgur.com/61S01vb)
 
 ```java
-String message = new SlackMessageBuilderJsonImpl()
+String message = String message = messageFactory.createMessageBuilder()
 
   .setText("Eat me, I'm a *delicious* doughnut!")
   .setResponseType("ephemeral")
@@ -74,21 +74,21 @@ String message = new SlackMessageBuilderJsonImpl()
   .setIconUrl("https://www.donut-lover-site.com/donut.png")
 
   .addAttachment(
-	  new AttachmentBuilderJsonImpl()
+	  messageFactory.createAttachmentBuilder()
 		  .setTitle("Top Donut of the Day")
 		  .setText("Bearclaw"))
 
   .addAttachment(
-	  new AttachmentBuilderJsonImpl()
+	  messageFactory.createAttachmentBuilder()
 		  .setTitle("Your Favorite Donuts", "http://donut-lover-site.com/user/1234")
 		  .setText("You have 16 favorite donuts.")
 		  .addField(
-			  new FieldBuilderJsonImpl()
+			  .createFieldBuilder()
 				  .setShort(true)
 				  .setTitle("Number 1 Donut")
 				  .setValue("Jelly"))
 		  .addField(
-			  new FieldBuilderJsonImpl()
+			  .createFieldBuilder()
 				  .setShort(true)
 				  .setTitle("Number 2 Donut")
 				  .setValue("Cruller")))
