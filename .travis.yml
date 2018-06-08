@@ -11,7 +11,7 @@ stages:
 
 jobs:
   include:
-    - stage: test -X signArchives
+    - stage: test
       script: ./gradlew test -x signArchives
     - stage: decrypt
       script: openssl aes-256-cbc -K $encrypted_f27c25e9ddd8_key -iv $encrypted_f27c25e9ddd8_iv -in oss_secring.gpg.enc -out oss_secring.gpg -d
