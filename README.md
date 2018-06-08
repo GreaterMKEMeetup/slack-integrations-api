@@ -131,6 +131,33 @@ logger.error("Failed to send response: " + hookResponse.getMessage());
 #### FileUploadRequestFactory
 Use this interface to create FileUploadBuilders, and FileUploadRequests. Implementations found in [slack-integrations-core](https://github.com/GreaterMKEMeetup/slack-integrations-core) project.
 
+```java
+FileUploadRequestFactory uploadRequestFactory = new HttpsFileUploadRequestFactory(token);
+
+Supplier<InputStream> inputStreamSupplier = () -> this.getClass().getResourceAsStream("/uploads/cat.jpg");
+
+FileUpload fileUpload =
+	uploadRequestFactory.createFileUploadBuilder()
+		.setChannels(withName(testChannel))
+		.setTitle("Hello Cat")
+		.setFiletype("jpg")
+		.setFilename("hello_cat.jpg")
+		.setInputStreamSupplier(inputStreamSupplier)
+		.setInitialComment("It's cat time!")
+		.build();
+
+FileUploadResponse response =
+	uploadRequestFactory
+		.createFileUploadRequest()
+		.upload(fileUpload);
+
+if (response.getStatus() == FileUploadResponse.Status.FAILED) {
+	throw response.getThrowable();
+}
+
+assertEquals(FileUploadResponse.Status.SUCCESS, response.getStatus());
+assertEquals("Hello Cat", response.getFileUpload().getOTitle().get());
+```
 
 ### [org.gmjm.slack.api.rtm](/src/main/java/org/gmjm/slack/api/rtm)
 
