@@ -3,9 +3,6 @@ jdk:
 - oraclejdk8
 
 stages:
-  - name: build
-    script:
-      - ./gradlew clean assemble
   - name: test
     script:
       - ./gradlew test
