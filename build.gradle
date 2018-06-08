@@ -14,6 +14,9 @@ sourceCompatibility = '1.8'
 repositories {
     mavenCentral()
     mavenLocal()
+    maven {
+        url "https://oss.sonatype.org/content/repositories/snapshots/"
+    }
 }
 
 dependencies {
@@ -31,6 +34,14 @@ task sourcesJar(type: Jar) {
 
 artifacts {
     archives javadocJar, sourcesJar
+}
+
+gradle.taskGraph.whenReady { taskGraph ->
+    if (taskGraph.allTasks.any { it instanceof Sign }) {
+        allprojects { ext."signing.keyId" = findProperty("signing.keyId") ?: System.getenv("SIGNING_KEY_ID") }
+        allprojects { ext."signing.secretKeyRingFile" = findProperty("signing.secretKeyRingFile") ?: System.getenv("SIGNING_KEY_PATH") }
+        allprojects { ext."signing.password" = findProperty("signing.password") ?: System.getenv("SIGNING_KEY_PASSWORD") }
+    }
 }
 
 signing {

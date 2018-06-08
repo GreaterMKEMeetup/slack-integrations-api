@@ -17,21 +17,23 @@ For an example of how to use the API in a SpringBoot app to create custom integr
 <dependency>
     <groupId>com.github.greatermkemeetup</groupId>
     <artifactId>slack-integrations-api</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
 </dependency>
 ```
 ### Gradle
 ```groovy
-compile 'com.github.greatermkemeetup:slack-integrations-api:1.0.3'
+compile 'com.github.greatermkemeetup:slack-integrations-api:1.0.4'
 ```
 
 ## Packages
 
-- [model](#orggmjmslackapimodel)
+- [command](#orggmjmslackapicommand)
 - [message](#orggmjmslackapimessage)
 - [hook](#orggmjmslackapihook)
+- [file](#orggmjmslackapifile)
+- [rtm](#orggmjmslackapirtm) - Experimental
 
-### [org.gmjm.slack.api.model](/src/main/java/org/gmjm/slack/api/model)
+### [org.gmjm.slack.api.command](/src/main/java/org/gmjm/slack/api/command)
 
 #### SlackCommand
 use SlackCommand to obtain information from an incoming Slack Command.
@@ -48,71 +50,158 @@ Use this interface to build up a Slack message, the call .build() to obtain a me
 [Slack screenshot of basic SlackMessageBuilder example.](http://imgur.com/jM2Qa39)
 
 ```java
-  // SlackMessageFactory implementations provided by slack-integrations-core.
-  SlackMessageBuilder messageBuilder = slackMessageFactory.createMessageBuilder()
-    .setUsername("doughnut-overlord")
-    .setIconEmoji("doughnut")
-    .setText("Eat me, I'm a *delicious* doughnut!") //Markdown is enabled by default
-    .setChannel("doughnut-lovers");
-  
-  System.out.println(messageBuilder.build());
+// SlackMessageFactory implementations provided by slack-integrations-core.
+SlackMessageBuilder messageBuilder = slackMessageFactory.createMessageBuilder()
+.setUsername("doughnut-overlord")
+.setIconEmoji("doughnut")
+.setText("Eat me, I'm a *delicious* doughnut!") //Markdown is enabled by default
+.setChannel("doughnut-lovers");
+
+System.out.println(messageBuilder.build());
 ```
 
-#### AttachmentBuilder
+#### AttachmentBuilder & FieldBuilder
 Use this interface to build up attachments that you can add to a SlackMessageBuilder.  Not all Slack response types support attachments, but most do.
 
 [Slack screenshot of AttachmentBuilder example.](http://imgur.com/61S01vb)
 
 ```java
-  SlackMessageBuilder messageBuilder = slackMessageFactory.createMessageBuilder()
-    .setUsername("doughnut-overlord")
-    .setIconEmoji("doughnut")
-    .setText("Here are your _amazing_ doughtnut options!") //Markdown is enabled by default
-    .setChannel("doughnut-lovers");
-  
-  {
-    AttachmentBuilder attachmentBuilder = slackMessageFactory.createAttachmentBuilder()
-        .setTitle("Sprinkles")
-        .setText("Red, white, and blue, *MURICA*!");
-    messageBuilder.addAttachment(attachmentBuilder);
-  }
-  {
-    AttachmentBuilder attachmentBuilder = slackMessageFactory.createAttachmentBuilder()
-        .setTitle("Jelly","https://en.wikipedia.org/wiki/Jelly_doughnut")
-        .setText("Delicious cherry filling.");
-    messageBuilder.addAttachment(attachmentBuilder);
-  }
-  
-  System.out.println(messageBuilder.build());
+String message = new SlackMessageBuilderJsonImpl()
+
+  .setText("Eat me, I'm a *delicious* doughnut!")
+  .setResponseType("ephemeral")
+  .setChannel("doughnut-lovers")
+  .setIconUrl("https://www.donut-lover-site.com/donut.png")
+
+  .addAttachment(
+	  new AttachmentBuilderJsonImpl()
+		  .setTitle("Top Donut of the Day")
+		  .setText("Bearclaw"))
+
+  .addAttachment(
+	  new AttachmentBuilderJsonImpl()
+		  .setTitle("Your Favorite Donuts", "http://donut-lover-site.com/user/1234")
+		  .setText("You have 16 favorite donuts.")
+		  .addField(
+			  new FieldBuilderJsonImpl()
+				  .setShort(true)
+				  .setTitle("Number 1 Donut")
+				  .setValue("Jelly"))
+		  .addField(
+			  new FieldBuilderJsonImpl()
+				  .setShort(true)
+				  .setTitle("Number 2 Donut")
+				  .setValue("Cruller")))
+  .build();
 ```
 
 ### [org.gmjm.slack.api.hook](/src/main/java/org/gmjm/slack/api/hook)
 
 #### HookRequesetFactory
-Use this class to create instances of HookRequest objects.  Implementations found in [slack-integrations-core](https://github.com/GreaterMKEMeetup/slack-integrations-core) project.
+Use this interface to create instances of HookRequest objects.  Implementations found in [slack-integrations-core](https://github.com/GreaterMKEMeetup/slack-integrations-core) project.
 
 #### HookRequest
 A reusable object that can be used to send a message to an Incoming Webhook, or a reply URL supplied by a SlackMessage object.
 
 ```java
-  //Used as a reply
-  HookRequest replyRequest = hookRequestFactory.create(slackCommand.getResponseUrl());
-  
-  SlackMessageBuilder smb = slackMessageFactory.createMessageBuilder()
-    .setText("Your wish is my command.");
-  
-  replyRequest.send(smb.build()); 
+//Used as a reply
+HookRequest replyRequest = hookRequestFactory.create(slackCommand.getResponseUrl());
+
+SlackMessageBuilder smb = slackMessageFactory.createMessageBuilder()
+.setText("Your wish is my command.");
+
+replyRequest.send(smb.build()); 
 ```
 
 #### HookResponse
-An object that makes processing the response from a HookRequest easier.  You don't have to worry about wrapping requests in try/catch blocks as this information is captured and provided by the HookResponse object.  This makes collections of HookRequests much nicer to process in Java 8 streams, as one thrown exception won't prevent the whole stream from exiting.
+An interface that makes processing the response from a HookRequest easier.  You don't have to worry about wrapping requests in try/catch blocks as this information is captured and provided by the HookResponse object.  This makes collections of HookRequests much nicer to process in Java 8 streams, as one thrown exception won't prevent the whole stream from exiting.
 
 ```java
-  import org.gmjm.slack.api.hook.HookResponse.Status;
+import org.gmjm.slack.api.hook.HookResponse.Status;
 
-  HookResponse hookResponse = hookRequest.send(messageText);
-  
-  if(Status.FAILED.equals(hookResponse.getStatus())) {
-    logger.error("Failed to send response: " + hookResponse.getMessage());
-  }
+HookResponse hookResponse = hookRequest.send(messageText);
+
+if(Status.FAILED.equals(hookResponse.getStatus())) {
+logger.error("Failed to send response: " + hookResponse.getMessage());
+}
+```
+
+### [org.gmjm.slack.api.file](/src/main/java/org/gmjm/slack/api/file)
+
+#### FileUploadRequestFactory
+Use this interface to create FileUploadBuilders, and FileUploadRequests. Implementations found in [slack-integrations-core](https://github.com/GreaterMKEMeetup/slack-integrations-core) project.
+
+```java
+FileUploadRequestFactory uploadRequestFactory = new HttpsFileUploadRequestFactory(token);
+
+Supplier<InputStream> inputStreamSupplier = () -> this.getClass().getResourceAsStream("/uploads/cat.jpg");
+
+FileUpload fileUpload =
+	uploadRequestFactory.createFileUploadBuilder()
+		.setChannels(withName(testChannel))
+		.setTitle("Hello Cat")
+		.setFiletype("jpg")
+		.setFilename("hello_cat.jpg")
+		.setInputStreamSupplier(inputStreamSupplier)
+		.setInitialComment("It's cat time!")
+		.build();
+
+FileUploadResponse response =
+	uploadRequestFactory
+		.createFileUploadRequest()
+		.upload(fileUpload);
+
+if (response.getStatus() == FileUploadResponse.Status.FAILED) {
+	throw response.getThrowable();
+}
+
+assertEquals(FileUploadResponse.Status.SUCCESS, response.getStatus());
+assertEquals("Hello Cat", response.getFileUpload().getOTitle().get());
+```
+
+### [org.gmjm.slack.api.rtm](/src/main/java/org/gmjm/slack/api/rtm)
+
+The RTM API is experimental.  Interfaces will change before official release.
+
+#### RtmSessionFactory 
+Use this interface to create instances of an RtmSessionFactory. Implementations found in [slack-integrations-core](https://github.com/GreaterMKEMeetup/slack-integrations-core) project.
+
+#### RtmSession
+Send and recieve messages in real time using RtmSession. Register EventConsumer objects on an RtmSession to listen for
+different Events.
+
+```java
+RtmSessionFactory sessionFactory = new WebsocketSessionFactory(token);
+RtmSession slackSession = sessionFactory.createSession();
+
+String msg = slackMessageBuilder.build();
+
+slackSession.registerConsumer(new EventConsumer<JsonNode>() {
+	@Override
+	public EventConsumerID getId() {
+		return new EventConsumerID("console-logger");
+	}
+
+	@Override
+	public void consume(Event<JsonNode> event) {
+		switch (event.getEventType()) {
+			case HELLO:
+				System.out.println("SuccessfullyConnected");
+				break;
+			case RECEIPT:
+				System.out.println("Your message was recieved.");
+				break;
+			case USER_TYPING:
+				System.out.println("Someone is typing: " + event.getPayload().toString());
+			case ERROR:
+				throw new RuntimeException("Event type was ERROR: " + event.getPayload().toString());
+			default:
+				break;
+		}
+	}
+});
+
+slackSession.send(msg);
+
+Thread.sleep(100000);
 ```

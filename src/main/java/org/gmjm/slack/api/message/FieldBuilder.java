@@ -1,5 +1,11 @@
 package org.gmjm.slack.api.message;
 
+/**
+ * FieldBuilder can be used to build up a list of fields on a message.
+ * <p>
+ *     https://api.slack.com/docs/formatting
+ * </p>
+ */
 public interface FieldBuilder {
 
 	/**

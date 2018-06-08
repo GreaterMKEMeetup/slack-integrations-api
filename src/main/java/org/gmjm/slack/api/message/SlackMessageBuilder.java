@@ -3,7 +3,8 @@ package org.gmjm.slack.api.message;
 /**
  * SlackMessageBuilder can be used to build up a complex, formatted slack message.
  * <p>
- * https://api.slack.com/docs/formatting
+ *     https://api.slack.com/docs/formatting
+ * </p>
  */
 public interface SlackMessageBuilder {
 

@@ -1,7 +1,10 @@
 language: java
-
 jdk:
 - oraclejdk8
 
-install: 
-- ./gradlew assemble -x signArchives
+before_install:
+- openssl aes-256-cbc -K $encrypted_f27c25e9ddd8_key -iv $encrypted_f27c25e9ddd8_iv
+  -in oss_secring.gpg.enc -out oss_secring.gpg -d
+
+install:
+- ./gradlew clean test assemble uploadArchives
