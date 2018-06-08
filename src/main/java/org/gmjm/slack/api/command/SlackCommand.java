@@ -1,4 +1,4 @@
-package org.gmjm.slack.api.model;
+package org.gmjm.slack.api.command;
 
 import java.util.Map;
 

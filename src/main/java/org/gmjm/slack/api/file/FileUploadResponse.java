@@ -3,6 +3,13 @@ package org.gmjm.slack.api.file;
 public interface FileUploadResponse {
 
 	/**
+	 * Returns the sent FileUpload object.
+	 *
+	 * @return the sent FileUpload object.
+	 */
+	FileUpload getFileUpload();
+
+	/**
 	 * Implementations should never return null.
 	 *
 	 * @return a success or error message.

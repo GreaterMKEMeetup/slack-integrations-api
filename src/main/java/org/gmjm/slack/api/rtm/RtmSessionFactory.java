@@ -1,6 +1,8 @@
 package org.gmjm.slack.api.rtm;
 
 /**
+ * EXPERIMENTAL: This feature is still in development, and the interfaces may change upon official release.
+ *
  * A factory to create new RTM sessions.
  */
 public interface RtmSessionFactory {

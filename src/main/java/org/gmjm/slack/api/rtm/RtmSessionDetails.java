@@ -3,6 +3,8 @@ package org.gmjm.slack.api.rtm;
 import java.net.URI;
 
 /**
+ * EXPERIMENTAL: This feature is still in development, and the interfaces may change upon official release.
+ *
  * Details needed to connect to a RTM session.
  */
 public interface RtmSessionDetails {

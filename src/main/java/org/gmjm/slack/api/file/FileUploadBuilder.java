@@ -93,4 +93,11 @@ public interface FileUploadBuilder {
 	 * @return this
 	 */
 	FileUploadBuilder setTitle(String title);
+
+	/**
+	 * Build a FileUpload based on the current state of the builder.
+	 *
+	 * @return a FileUpload object.
+	 */
+	FileUpload build();
 }

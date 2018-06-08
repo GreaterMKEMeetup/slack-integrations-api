@@ -1,5 +1,11 @@
 package org.gmjm.slack.api.rtm;
 
+/**
+ * EXPERIMENTAL: This feature is still in development, and the interfaces may change upon official release.
+ *
+ * All the possible connection errors that could be encountered when
+ * an RtmSession attempts to connect to the RTM API.
+ */
 public enum ConnectionErrorType {
 
 	NOT_AUTHED("not_authed","No authentication token provided."),

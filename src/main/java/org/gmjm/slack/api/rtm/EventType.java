@@ -1,5 +1,10 @@
 package org.gmjm.slack.api.rtm;
 
+/**
+ * EXPERIMENTAL: This feature is still in development, and the interfaces may change upon official release.
+ *
+ *
+ */
 public enum EventType {
 
 	ACCOUNTS_CHANGED("accounts_changed",true,false,"The list of accounts a user is signed into has changed"),

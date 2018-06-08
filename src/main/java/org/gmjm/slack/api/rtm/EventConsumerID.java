@@ -2,6 +2,11 @@ package org.gmjm.slack.api.rtm;
 
 import java.util.Objects;
 
+/**
+ * EXPERIMENTAL: This feature is still in development, and the interfaces may change upon official release.
+ *
+ *
+ */
 public class EventConsumerID {
 
 	private final String id;
