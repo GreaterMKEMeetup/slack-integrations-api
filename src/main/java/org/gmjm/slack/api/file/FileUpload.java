@@ -8,11 +8,12 @@ import java.util.function.Supplier;
 import org.gmjm.slack.api.common.Channel;
 
 public interface FileUpload {
-    Optional<FileType> getFileType();
-    Optional<String> getFileName();
-    Optional<Supplier<InputStream>> getInputStreamSupplier();
-    Optional<String> getContent();
-    Optional<String> getInitialComment();
+    Optional<String> getOTitle();
+    Optional<String> getOFileType();
+    Optional<String> getOFileName();
+    Optional<Supplier<InputStream>> getOInputStreamSupplier();
+    Optional<String> getOContent();
+    Optional<String> getOInitialComment();
     Set<Channel> getChannels();
 
 }

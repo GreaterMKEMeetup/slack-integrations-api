@@ -3,6 +3,8 @@ package org.gmjm.slack.api.file;
 import java.io.InputStream;
 import java.util.function.Supplier;
 
+import org.gmjm.slack.api.common.Channel;
+
 public interface FileUploadBuilder {
 
 	/**
@@ -13,7 +15,7 @@ public interface FileUploadBuilder {
 	 * @param channels The channel names or IDs
 	 * @return this
 	 */
-	FileUploadBuilder setChannels(String ... channels);
+	FileUploadBuilder setChannels(Channel... channels);
 
 	/**
 	 * Optional - Must be set if setFile is not called.
