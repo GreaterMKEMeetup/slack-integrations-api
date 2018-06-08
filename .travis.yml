@@ -3,7 +3,6 @@ jdk:
 - oraclejdk8
 
 stages:
-  - build
   - test
   - name: decrypt
     if: branch =~ ^draft OR tag =~ ^v
@@ -12,10 +11,8 @@ stages:
 
 jobs:
   include:
-    - stage: compile
-      script: ./gradlew build
-    - stage: test
-      script: ./gradlew test
+    - stage: test -X signArchives
+      script: ./gradlew test -x signArchives
     - stage: decrypt
       script: openssl aes-256-cbc -K $encrypted_f27c25e9ddd8_key -iv $encrypted_f27c25e9ddd8_iv -in oss_secring.gpg.enc -out oss_secring.gpg -d
     - stage: deploy
