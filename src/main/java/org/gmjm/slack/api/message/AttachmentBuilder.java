@@ -4,7 +4,7 @@ package org.gmjm.slack.api.message;
  * AttachementBuilder is used to build up a complex, formatted attachment
  * for inclusion in a SlackMessageBuilder.
  * <p>
- *     https://api.slack.com/docs/attachments
+ *     https://api.slack.com/docs/message-attachments
  * </p>
  */
 public interface AttachmentBuilder {
@@ -13,10 +13,10 @@ public interface AttachmentBuilder {
 	 * Sets the title, and enables it to link to a URL.
 	 *
 	 * @param title The title of the Attachment.
-	 * @param link  The link of the attachment (URL)
+	 * @param titleLink  The titleLink of the attachment (URL)
 	 * @return this
 	 */
-	AttachmentBuilder setTitle(String title, String link);
+	AttachmentBuilder setTitle(String title, String titleLink);
 
 	/**
 	 * Set the title of the Attachment.
@@ -25,6 +25,39 @@ public interface AttachmentBuilder {
 	 * @return this
 	 */
 	AttachmentBuilder setTitle(String title);
+
+	/**
+	 * Sets the titleLink
+	 *
+	 * @param link  The link of the attachment (URL)
+	 * @return this
+	 */
+	AttachmentBuilder setTitleLink(String link);
+
+
+	/**
+	 * A valid URL to an image file that will be displayed inside a message attachment. We currently support the following formats: GIF, JPEG, PNG, and BMP.
+	 *
+	 * Large images will be resized to a maximum width of 360px or a maximum height of 500px, while still maintaining the original aspect ratio.
+	 *
+	 * @param imageUrl the URL to an image file
+	 * @return this
+	 */
+	AttachmentBuilder setImageUrl(String imageUrl);
+
+	/**
+	 *
+	 * A valid URL to an image file that will be displayed as a thumbnail on the right side of a message attachment. We currently support the following formats: GIF, JPEG, PNG, and BMP.
+	 *
+	 * The thumbnail's longest dimension will be scaled down to 75px while maintaining the aspect ratio of the image. The filesize of the image must also be less than 500 KB.
+	 *
+	 * For best results, please use images that are already 75px by 75px.
+	 *
+	 * @param thumbUrl the URL to an image file
+	 * @return this
+	 */
+	AttachmentBuilder setThumbUrl(String thumbUrl);
+
 
 	/**
 	 * Set the text of the attachment body.
@@ -47,6 +80,15 @@ public interface AttachmentBuilder {
 	AttachmentBuilder setText(String text, boolean markdownEnabled);
 
 	/**
+	 * Set the text of the attachment body.  It should not contain any markdown.
+	 *
+	 * @param fallbackText The attachment body.
+	 * @return this
+	 */
+	AttachmentBuilder setFallbackText(String fallbackText);
+
+
+	/**
 	 * Set the pre text of the attachment.  This will appear below the
 	 * title.
 	 * Markdown enabled by default.
@@ -67,9 +109,10 @@ public interface AttachmentBuilder {
 	AttachmentBuilder setPreText(String preText, boolean markdownEnabled);
 
 	/**
-	 * Set the color of the attachment.
 	 *
-	 * @param color The hex encoding of the color.
+	 * An optional value that can either be one of good, warning, danger, or any hex color code (eg. #439FE0)
+	 *
+	 * @param color The name, or hex encoding of the color.
 	 * @return this
 	 */
 	AttachmentBuilder setColor(String color);
@@ -121,6 +164,30 @@ public interface AttachmentBuilder {
 	 * @return this
 	 */
 	AttachmentBuilder addField(FieldBuilder builder);
+
+
+	/**
+	 * Add some brief text to help contextualize and identify an attachment.
+	 * Limited to 300 characters, and may be truncated further when displayed to
+	 * users in environments with limited screen real estate.
+	 *
+	 * @param footerText The footer text.
+	 * @return this
+	 */
+	AttachmentBuilder setFooter(String footerText);
+
+	/**
+	 * To render a small icon beside your footer text, provide a publicly accessible URL string
+	 * in the footer_icon field. You must also provide a footer for the field to be recognized.
+	 *
+	 * We'll render what you provide at 16px by 16px. It's best to use an image that is similarly sized.
+	 *
+	 * Example: "https://platform.slack-edge.com/img/default_application_icon.png"
+	 *
+	 * @param footerIconUrl The footerIcon URL.
+	 * @return this
+	 */
+	AttachmentBuilder setFooterIcon(String footerIconUrl);
 
 	/**
 	 * @return the attachment as a String
