@@ -1,5 +1,7 @@
 package org.gmjm.slack.api.hook;
 
+import java.util.concurrent.Future;
+
 /**
  * Use a factory implementation instance to create all instances of related
  * HookRequest objects.  This ensures the .send method will work as
@@ -16,5 +18,12 @@ public interface HookRequestFactory {
 	 * @return A HookRequest object
 	 */
 	HookRequest createHookRequest(String url);
+
+	/**
+	 *
+	 * @param url The target URL used by the HookRequest.
+	 * @return A HookRequest object
+	 */
+	Future<HookRequest> createAsyncHookRequest(String url);
 
 }
