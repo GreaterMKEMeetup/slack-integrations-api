@@ -1,6 +1,6 @@
 package org.gmjm.slack.api.hook;
 
-import java.util.concurrent.Future;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * A simple interface to send a message, and recieve a response asyncronously.  These objects should be created
@@ -21,5 +21,5 @@ public interface AsyncHookRequest {
    * @param message The message to send
    * @return A Future HookResponse object.
    */
-  Future<HookResponse> send(String message);
+  CompletableFuture<HookResponse> send(String message);
 }
