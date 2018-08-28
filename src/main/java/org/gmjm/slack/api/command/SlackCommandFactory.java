@@ -1,14 +1,12 @@
 package org.gmjm.slack.api.command;
 
-import java.util.Map;
-
-public interface SlackCommandFactory {
+public interface SlackCommandFactory<T> {
 
 	/**
 	 *
-	 * @param requestParameters the parameters recieved from the slack command.
+	 * @param commandObject the object received from the slack command.
 	 * @return A SlackCommand object parsed from the requestParameters.
 	 */
-	SlackCommand create(Map<String, String> requestParameters);
+	SlackCommand create(T commandObject);
 
 }
