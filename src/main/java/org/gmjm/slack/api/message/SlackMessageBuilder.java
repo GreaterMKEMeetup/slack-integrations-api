@@ -102,6 +102,40 @@ public interface SlackMessageBuilder {
 	SlackMessageBuilder setUsername(String username);
 
 	/**
+	 *
+	 * Used only when creating messages in response to a button action invocation. When set to true,
+	 * the inciting message will be replaced by this message you're providing. When false, the message
+	 * you're providing is considered a brand new message.
+	 *
+	 * @param replaceOriginal Should original message be replaced.
+	 * @return this
+	 */
+	SlackMessageBuilder replaceOriginal(boolean replaceOriginal);
+
+	/**
+	 *
+	 * Used only when creating messages in response to a button action invocation. When set to true,
+	 * the inciting message will be deleted and if a message is provided, it will be posted as a brand
+	 * new message.
+	 *
+	 * @param deleteOriginal Should original message be deleted.
+	 * @return this
+	 */
+	SlackMessageBuilder deleteOriginal(String deleteOriginal);
+
+	/**
+	 * Sets an arbitrary key, value pair on the message.
+	 *
+	 * This should only be used in cases where the API has not been updated to
+	 * support a new feature.  Try to avoid using this.
+	 *
+	 * @param key The key of the attribute that will be added to the message.
+	 * @param value The value of the attribute that will be added to the message.
+	 * @return this
+	 */
+	SlackMessageBuilder setAttribute(String key, String value);
+
+	/**
 	 * Build up the current message into a String.
 	 *
 	 * @return The current message as a String formatted for Slack.

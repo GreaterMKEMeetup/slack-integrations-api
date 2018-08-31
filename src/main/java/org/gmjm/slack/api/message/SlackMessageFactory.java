@@ -11,23 +11,32 @@ package org.gmjm.slack.api.message;
 public interface SlackMessageFactory {
 
 	/**
-	 * This object is not threadsafe, or reusable.
+	 * The returned object is not threadsafe.
 	 *
 	 * @return A new instance of SlackMessageBuilder.
 	 */
 	SlackMessageBuilder createMessageBuilder();
 
 	/**
-	 * This object is not threadsafe, or reusable.
+	 * This returned is not threadsafe.
 	 *
 	 * @return A new instance of AttachmentBuilder.
 	 */
 	AttachmentBuilder createAttachmentBuilder();
 
 	/**
-	 * This object is not threadsafe, or reusable.
+	 * This returned is not threadsafe.
 	 *
 	 * @return A new instance of AttachmentBuilder.
 	 */
 	FieldBuilder createFieldBuilder();
+
+	/**
+	 * This returned is not threadsafe.
+	 *
+	 * @return A new instance of ActionBuilder.
+	 */
+	ActionBuilder createActionBuilder();
+
+
 }

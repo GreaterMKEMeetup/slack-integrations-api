@@ -33,6 +33,18 @@ public interface FieldBuilder {
 	FieldBuilder setShort(boolean isShort);
 
 	/**
+	 * Sets an arbitrary key, value pair on the field.
+	 *
+	 * This should only be used in cases where the API has not been updated to
+	 * support a new feature.  Try to avoid using this.
+	 *
+	 * @param key The key of the attribute that will be added to the field.
+	 * @param value The value of the attribute that will be added to the field.
+	 * @return this
+	 */
+	FieldBuilder setAttribute(String key, String value);
+
+	/**
 	 * @return the attachment as a String
 	 */
 	String build();
