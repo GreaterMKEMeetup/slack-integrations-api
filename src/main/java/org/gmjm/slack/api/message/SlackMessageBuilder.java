@@ -121,7 +121,7 @@ public interface SlackMessageBuilder {
 	 * @param deleteOriginal Should original message be deleted.
 	 * @return this
 	 */
-	SlackMessageBuilder deleteOriginal(String deleteOriginal);
+	SlackMessageBuilder deleteOriginal(boolean deleteOriginal);
 
 	/**
 	 * Sets an arbitrary key, value pair on the message.
@@ -133,12 +133,12 @@ public interface SlackMessageBuilder {
 	 * @param value The value of the attribute that will be added to the message.
 	 * @return this
 	 */
-	SlackMessageBuilder setAttribute(String key, String value);
+	SlackMessageBuilder setAttribute(String key, Object value);
 
 	/**
-	 * Build up the current message into a String.
+	 * Build the current SlackMessageBuilder state into an immutable Message object.
 	 *
-	 * @return The current message as a String formatted for Slack.
+	 * @return An immutable Message object.
 	 */
-	String build();
+	Message build();
 }

@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface Options {
 
-  List<Options> getOptions();
+  List<Option> getOptions();
 
 }

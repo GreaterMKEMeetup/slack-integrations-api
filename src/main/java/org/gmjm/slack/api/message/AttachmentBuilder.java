@@ -251,6 +251,14 @@ public interface AttachmentBuilder {
 	AttachmentBuilder addActions(Collection<ActionBuilder> actionBuilders);
 
 	/**
+	 * Adds an action button to the attachment.
+	 *
+	 * @param button The button to add.
+	 * @return this
+	 */
+	AttachmentBuilder addButton(Button button);
+
+	/**
 	 * Set actions on this Attachment.
 	 * This will override any previously held actions that may have been added
 	 * to the builder.
@@ -270,7 +278,7 @@ public interface AttachmentBuilder {
 	 * @param value The value of the attribute that will be added to the attachment.
 	 * @return this
 	 */
-	AttachmentBuilder setAttribute(String key, String value);
+	AttachmentBuilder setAttribute(String key, Object value);
 
 
 	/**
@@ -285,7 +293,9 @@ public interface AttachmentBuilder {
 	AttachmentBuilder setCallbackId(String callbackId);
 
 	/**
-	 * @return the attachment as a String
+	 * Build the current AttachmentBuilder into an immutable Attachment object.
+	 *
+	 * @return an immutable Attachment object.
 	 */
-	String build();
+	Attachment build();
 }

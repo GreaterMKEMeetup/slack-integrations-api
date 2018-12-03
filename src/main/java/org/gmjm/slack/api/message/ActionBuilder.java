@@ -33,13 +33,13 @@ public interface ActionBuilder {
    * Used only with message buttons, this decorates buttons with extra visual importance, which is
    * especially useful when providing logical default action or highlighting a destructive activity.
    *
-   * DEFAULT — Yes, it's the default. Buttons will look simple.</br>
+   * DEFAULT — Yes, it's the default. Buttons will look simple.<br>
    *
    * PRIMARY — Use this sparingly, when the button represents a key action to accomplish. You should
-   *  probably only ever have one primary button within a set.</br>
+   *  probably only ever have one primary button within a set.<br>
    *
    * DANGER — Use this when the consequence of the button click will result in the destruction of
-   *  something, like a piece of data stored on your servers. Use even more sparingly than primary.</br>
+   *  something, like a piece of data stored on your servers. Use even more sparingly than primary.<br>
    *
    * @param style The style enum to set.
    * @return this
@@ -51,13 +51,13 @@ public interface ActionBuilder {
    * Used only with message buttons, this decorates buttons with extra visual importance, which is
    * especially useful when providing logical default action or highlighting a destructive activity.
    *
-   * default — Yes, it's the default. Buttons will look simple.</br>
+   * default — Yes, it's the default. Buttons will look simple.<br>
    *
    * primary — Use this sparingly, when the button represents a key action to accomplish. You should
-   *  probably only ever have one primary button within a set.</br>
+   *  probably only ever have one primary button within a set.<br>
    *
    * danger — Use this when the consequence of the button click will result in the destruction of
-   *  something, like a piece of data stored on your servers. Use even more sparingly than primary.</br>
+   *  something, like a piece of data stored on your servers. Use even more sparingly than primary.<br>
    *
    * @param style The style to set.
    * @return this
@@ -164,10 +164,10 @@ public interface ActionBuilder {
   /**
    * If provided, this option will be set as the pre-selected option.
    *
-   * @param option The preselected option.
+   * @param options The preselected options.
    * @return this
    */
-  ActionBuilder setSelectOption(Option option);
+  ActionBuilder setSelectedOptions(Options options);
 
   /**
    * Sets the OptionGroups on this action.  Will replace any Options that have been set.
@@ -205,7 +205,7 @@ public interface ActionBuilder {
    * specified number of characters are entered before sending a request to your app's external
    * suggestions API endpoint. Defaults to 1.
    *
-   * @param minQueryLength
+   * @param minQueryLength The minimum query length
    * @return this
    */
   ActionBuilder setMinQueryLength(int minQueryLength);
@@ -220,6 +220,13 @@ public interface ActionBuilder {
    * @param value The value of the attribute that will be added to the action.
    * @return this
    */
-  ActionBuilder setAttribute(String key, String value);
+  ActionBuilder setAttribute(String key, Object value);
+
+  /**
+   * Build the current ActionBuilder state into an immutable Action object.
+   *
+   * @return an immutable Action object.
+   */
+  Action build();
 
 }

@@ -42,10 +42,12 @@ public interface FieldBuilder {
 	 * @param value The value of the attribute that will be added to the field.
 	 * @return this
 	 */
-	FieldBuilder setAttribute(String key, String value);
+	FieldBuilder setAttribute(String key, Object value);
 
 	/**
-	 * @return the attachment as a String
+	 * Build the current FieldBuilder state into an immutable Field object.
+	 *
+	 * @return an immutable Field object.
 	 */
-	String build();
+	Field build();
 }
